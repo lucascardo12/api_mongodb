@@ -1,6 +1,11 @@
 # Mongo DB API DART
 
-## Overview
+[![CI](https://github.com/dart-lang/samples/workflows/Dart%20CI/badge.svg)](https://github.com/dart-lang/samples/actions?query=branch%3Amaster)
+
+A collection of [Dart][dart] programs that illustrate features and best
+practices. For a list of community-maintained projects, see [Awesome
+Dart][awesome-dart].
+
 
 In partnership with [Firebase](https://firebase.google.com/), we're making the public Hacker News data available in near real time. Firebase enables easy access from [Android](https://firebase.google.com/docs/android/setup), [iOS](https://firebase.google.com/docs/ios/setup) and the [web](https://firebase.google.com/docs/web/setup). [Servers](https://firebase.google.com/docs/server/setup) aren't left out.
 
