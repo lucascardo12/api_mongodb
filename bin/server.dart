@@ -6,6 +6,7 @@ import 'package:shelf_router/shelf_router.dart' as shelf_router;
 import 'package:shelf_static/shelf_static.dart' as shelf_static;
 
 import 'banco.dart';
+import 'senha.dart' as sec;
 
 Future main() async {
   final port = int.parse(Platform.environment['PORT'] ?? '8080');
@@ -28,7 +29,7 @@ final _router = shelf_router.Router()
   ..delete('/delete', delete);
 
 Future<Response> getData(Request request) async {
-  if (request.headers['login'] == 'lucascardo12' && request.headers['senha'] == 'lucas2021') {
+  if (request.headers['login'] == sec.login && request.headers['senha'] == sec.senha) {
     try {
       Map<String, dynamic> selector = Map<String, dynamic>();
       MongoDB banco = MongoDB();
