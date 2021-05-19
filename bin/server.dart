@@ -24,9 +24,9 @@ Future main() async {
 final _staticHandler = shelf_static.createStaticHandler('public', defaultDocument: 'index.html');
 
 final _router = shelf_router.Router()
-  ..get('/getData', getData)
-  ..post('/insertUpdate', insertUpdate)
-  ..delete('/delete', delete);
+  ..get('/GetData', getData)
+  ..post('/InsertUpdate', insertUpdate)
+  ..delete('/Delete', delete);
 
 Future<Response> getData(Request request) async {
   if (request.headers['login'] == sec.login && request.headers['senha'] == sec.senha) {
