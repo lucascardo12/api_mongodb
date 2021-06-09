@@ -66,7 +66,7 @@ Future<Response> getData(Request request) async {
 }
 
 Future<Response> insertUpdate(Request request) async {
-  if (request.headers['login'] == 'lucascardo12' && request.headers['senha'] == 'lucas2021') {
+  if (request.headers['login'] == sec.login && request.headers['senha'] == sec.senha) {
     try {
       Map<String, dynamic> data = jsonDecode(await request.readAsString());
       MongoDB banco = MongoDB();
@@ -101,7 +101,7 @@ Future<Response> insertUpdate(Request request) async {
 Future<Response> delete(Request request) async {
   Map<String, dynamic> selector = Map<String, dynamic>();
   MongoDB banco = MongoDB();
-  if (request.headers['login'] == 'lucascardo12' && request.headers['senha'] == 'lucas2021') {
+  if (request.headers['login'] == sec.login && request.headers['senha'] == sec.senha) {
     try {
       banco.senhaDb = request.headers['senhaDb']!;
       banco.clusterDb = request.headers['clusterDb']!;
