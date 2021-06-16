@@ -50,7 +50,7 @@ class MongoDB {
       List<dynamic> data = [];
       var collection = db.collection(tabela);
       await collection.find(selector).forEach(
-            (element) => data.add(element),
+            (element) => data.add(element.toString()),
           );
       return data;
     } catch (e) {

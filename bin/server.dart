@@ -27,7 +27,6 @@ final _router = shelf_router.Router()
   ..get('/GetData', getData)
   ..post('/InsertUpdate', insertUpdate)
   ..delete('/Delete', delete);
-
 Future<Response> getData(Request request) async {
   if (request.headers['login'] == sec.login && request.headers['senha'] == sec.senha) {
     try {
