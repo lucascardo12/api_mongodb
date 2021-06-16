@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:mongo_dart/mongo_dart.dart';
 
 class MongoDB {
@@ -50,7 +52,7 @@ class MongoDB {
       List<dynamic> data = [];
       var collection = db.collection(tabela);
       await collection.find(selector).forEach(
-            (element) => data.add(element.toString()),
+            (element) => data.add(json.encode((element))),
           );
       return data;
     } catch (e) {

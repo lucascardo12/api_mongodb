@@ -27,6 +27,7 @@ final _router = shelf_router.Router()
   ..get('/GetData', getData)
   ..post('/InsertUpdate', insertUpdate)
   ..delete('/Delete', delete);
+
 Future<Response> getData(Request request) async {
   if (request.headers['login'] == sec.login && request.headers['senha'] == sec.senha) {
     try {
@@ -47,11 +48,9 @@ Future<Response> getData(Request request) async {
         selector: selector,
       );
       banco.db.close();
-      return Response.ok(
-        JsonEncoder.withIndent(' ').convert(
-          {"data": retorno},
-        ),
-      );
+      return Response.ok(JsonEncoder.withIndent(' ').convert(
+        {"data": retorno},
+      ));
     } catch (e) {
       return Response.ok({"data": e.toString()});
     }
