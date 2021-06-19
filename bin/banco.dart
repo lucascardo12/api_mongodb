@@ -46,18 +46,27 @@ class MongoDB {
     }
   }
 
-  Future<List<dynamic>?> getData({Map<String, dynamic>? selector, required String tabela}) async {
+  Future<List<dynamic>> getData({Map<String, dynamic>? selector, required String tabela}) async {
     //{'_id': data.id} selector
+    DateTime.now().toString();
     try {
       List<dynamic> data = [];
       var collection = db.collection(tabela);
-      await collection.find(selector).forEach(
-            (element) => data.add(json.encode((element))),
-          );
+      await collection.find(selector).forEach((element) {
+        Map<String, dynamic> auxi = <String, dynamic>{};
+        element.keys.forEach((xx) {
+          if (element[xx] is String || element[xx] is bool || element[xx] is int || element[xx] is double) {
+            auxi[xx] = element[xx];
+          } else {
+            element[xx] != null ? auxi[xx] = element[xx].toString() : auxi[xx] = element[xx];
+          }
+        });
+        data.add(auxi);
+      });
       return data;
     } catch (e) {
       print(e);
-      return null;
+      return [];
     }
   }
 }

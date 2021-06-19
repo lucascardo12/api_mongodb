@@ -9,7 +9,6 @@ import 'banco.dart';
 import 'senha.dart' as sec;
 
 Future main() async {
-  final port = int.parse(Platform.environment['PORT'] ?? '8080');
   final cascade = Cascade().add(_staticHandler).add(_router);
 
   final pipeline = Pipeline().addMiddleware(logRequests()).addHandler(cascade.handler);
@@ -17,7 +16,7 @@ Future main() async {
   await shelf_io.serve(
     pipeline,
     InternetAddress.anyIPv4,
-    port,
+    8080,
   );
 }
 
@@ -40,9 +39,8 @@ Future<Response> getData(Request request) async {
       banco.loginDb = request.headers['loginDb']!;
       await banco.inicia();
       if (request.headers['selector'] != null) {
-        selector = jsonDecode(request.headers['selector']!);
+        selector = json.decode(request.headers['selector']!);
       }
-
       var retorno = await banco.getData(
         tabela: request.headers['tabela']!,
         selector: selector,
@@ -52,7 +50,7 @@ Future<Response> getData(Request request) async {
         {"data": retorno},
       ));
     } catch (e) {
-      return Response.ok({"data": e.toString()});
+      return Response.internalServerError(body: {"data": e.toString()});
     }
   } else {
     return Response.ok(
